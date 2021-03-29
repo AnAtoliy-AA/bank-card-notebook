@@ -12,8 +12,8 @@ const ELEMENT_NAMES = {
 export default class BankCardNoteBook {
     constructor() {
         this.mainRoot = document.getElementById(ELEMENT_NAMES.MAIN_ROOT_ID);
-        this.createBankCardsContainer();
         this.createBankCardForm();
+        this.createBankCardsContainer();
         this.createDomBankCardsFromLocalStorage();
     }
 

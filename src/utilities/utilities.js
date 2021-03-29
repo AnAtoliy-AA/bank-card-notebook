@@ -15,3 +15,26 @@ export const addBankCardToLocalStorage = (bankCard) => {
         JSON.stringify(bankCardsInLocalStorage)
       );
 }
+
+export const deleteBankCardFromLocalStorage = (bankCardNumber) => {
+    const bankCardsInLocalStorage = JSON.parse(localStorage.getItem(BANK_CARDS_IN_LOCAL_STORAGE))
+    const filteredBankCardsInLocalStorage = bankCardsInLocalStorage.filter((bankCard) => {
+        return bankCard.cardNumber !== bankCardNumber
+    });
+    localStorage.setItem(
+      BANK_CARDS_IN_LOCAL_STORAGE,
+      JSON.stringify(filteredBankCardsInLocalStorage)
+    );
+}
+
+export const checkIsBankCardExistInLocalStorage = (bankCardNumber) => {
+    const bankCardsInLocalStorage = JSON.parse(localStorage.getItem(BANK_CARDS_IN_LOCAL_STORAGE))
+    const filteredBankCardsInLocalStorage = bankCardsInLocalStorage.find((bankCard) => {
+        return bankCard.cardNumber === bankCardNumber
+    });
+    return filteredBankCardsInLocalStorage ? true : false
+    // localStorage.setItem(
+    //   BANK_CARDS_IN_LOCAL_STORAGE,
+    //   JSON.stringify(filteredBankCardsInLocalStorage)
+    // );
+}
