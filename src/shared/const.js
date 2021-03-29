@@ -1,0 +1,1 @@
+export const BANK_CARDS_IN_LOCAL_STORAGE = 'bank_cards-notebook';
