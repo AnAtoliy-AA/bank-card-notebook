@@ -1,5 +1,6 @@
 import BankCardForm from './BankCardForm';
 import {BANK_CARDS_IN_LOCAL_STORAGE } from '../shared/const'
+import BankCard from './BankCard';
 
 const ELEMENT_NAMES = {
     MAIN_ROOT_ID: 'root',
@@ -33,9 +34,8 @@ export default class BankCardNoteBook {
         const bankCardsInLocalStorage = JSON.parse(localStorage.getItem(BANK_CARDS_IN_LOCAL_STORAGE))
         const bankCardContainer = document.querySelector('.bank-card-container');
         bankCardsInLocalStorage.map((card) => {
-            const domCard = document.createElement('div');
-            domCard.innerHTML = card.cardNumber;
-            bankCardContainer.appendChild(domCard);
+            const domCard = new BankCard(card.cardNumber, card.cardComment, card.cardType)
+            bankCardContainer.appendChild(domCard.createDomBankCard());
         })
     }
 }
