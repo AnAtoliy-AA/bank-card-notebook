@@ -1,6 +1,7 @@
 import BankCardForm from "./BankCardForm";
 import { BANK_CARDS_IN_LOCAL_STORAGE } from "../shared/const";
 import BankCard from "./BankCard";
+import '../styles/bank-card-notebook.scss';
 
 const ELEMENT_NAMES = {
   MAIN_ROOT_ID: "root",
