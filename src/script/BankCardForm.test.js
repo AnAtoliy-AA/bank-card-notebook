@@ -5,12 +5,6 @@ it("Checks, that new form creates: ", () => {
   expect(bankCardForm).toBeDefined();
 });
 
-it("Shows that mockClear is working: ", () => {
-  expect(bankCardForm).not.toBeDefined();
-  const bankCardForm = new BankCardForm();
-  expect(bankCardForm).toBeDefined();
-});
-
 it("Shows that form  has checkCardValidation: ", () => {
   const bankCardForm = new BankCardForm();
   expect(bankCardForm.checkCardValidation).toBeDefined();
