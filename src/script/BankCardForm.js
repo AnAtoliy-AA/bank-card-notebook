@@ -1,5 +1,5 @@
 import BankCard from "./BankCard";
-import '../styles/bank-card-form.scss';
+import "../styles/bank-card-form.scss";
 import { DEFAULT_VALUES, CARD_TYPE_VALUES } from "../shared/const";
 import {
   addBankCardToLocalStorage,
@@ -9,20 +9,24 @@ import {
 export default class BankCardForm {
   constructor() {
     this.createBankCardForm();
-    // this.domIsCardValidMessage = document.createElement('p');
   }
 
   createBankCardForm() {
     const bankCardForm = document.createElement("form");
-    bankCardForm.classList.add('bank-card__form');
-    const bankCardFormInputNumberContainer = document.createElement('div');
-    bankCardFormInputNumberContainer.classList.add('input-number__contaimer')
+    const bankCardFormInputNumberContainer = document.createElement("div");
     const bankCardFormButtonCardCommentInput = document.createElement("input");
-    bankCardFormButtonCardCommentInput.classList.add('input__comment');
-    bankCardFormButtonCardCommentInput.setAttribute('maxlength', 1024);
-    bankCardFormButtonCardCommentInput.setAttribute('placeholder', 'Write your comment here...')
     const bankCardFormButton = document.createElement("button");
-    bankCardFormButton.classList.add('bank-card__button')
+
+    bankCardForm.classList.add("bank-card__form");
+    bankCardFormInputNumberContainer.classList.add("input-number__container");
+    bankCardFormButtonCardCommentInput.classList.add("input__comment");
+
+    bankCardFormButtonCardCommentInput.setAttribute("maxlength", 1024);
+    bankCardFormButtonCardCommentInput.setAttribute(
+      "placeholder",
+      "Write your comment here..."
+    );
+    bankCardFormButton.classList.add("button", "button_save");
 
     for (let i = 0; i < DEFAULT_VALUES.NUMBER_OF_INPUT_BLOCKS; i++) {
       const bankCardFormCardNumberInput = document.createElement("input");
@@ -31,7 +35,8 @@ export default class BankCardForm {
         "maxlength",
         DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_INPUT_BLOCK
       );
-      bankCardFormCardNumberInput.setAttribute('placeholder', 'Card№')
+
+      bankCardFormCardNumberInput.setAttribute("placeholder", "Card№");
       bankCardFormCardNumberInput.classList.add("input__number");
       bankCardFormInputNumberContainer.appendChild(bankCardFormCardNumberInput);
     }
@@ -41,9 +46,6 @@ export default class BankCardForm {
 
     bankCardFormButton.innerHTML = "submit";
 
-    // bankCardFormCardNumberInput.addEventListener("change", (event) =>
-    //   this.onCardNumberInputChange(event.target.value)
-    // );
     bankCardForm.addEventListener("submit", (event) =>
       this.handleBankCardFormSubmit(event)
     );
@@ -52,19 +54,17 @@ export default class BankCardForm {
     bankCardForm.appendChild(bankCardFormButtonCardCommentInput);
     bankCardForm.appendChild(bankCardFormButton);
     bankCardForm.appendChild(submitMessage);
-    // bankCardForm.appendChild(this.domIsCardValidMessage);
 
     return bankCardForm;
   }
 
   onCardNumberInputChange(value) {
     const isCardValid = this.checkCardValidation(value);
-
     const domSubmitMessage = document.getElementById("form-message");
+
     domSubmitMessage.innerHTML = isCardValid
       ? "Valid number"
       : "not valid number";
-    console.log(isCardValid);
   }
 
   handleBankCardFormSubmit(event) {

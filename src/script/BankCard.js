@@ -1,9 +1,9 @@
-import { deleteBankCardFromLocalStorage } from "../utilities/utilities";
 import { CARD_TYPE_VALUES, DEFAULT_VALUES } from "../shared/const";
+import ModalWindow from "./ModalWindow";
 import belcartImage from "../images/logo_belcart.png";
 import masterCardImage from "../images/logo-mastercard.png";
 import visaImage from "../images/logo-visa.png";
-import '../styles/bank-card.scss';
+import "../styles/bank-card.scss";
 export default class BankCard {
   constructor(cardNumber, cardComment, cardType) {
     this.cardNumber = cardNumber;
@@ -17,9 +17,10 @@ export default class BankCard {
     const domBankCardComment = document.createElement("p");
     const domBankCardTypeImage = document.createElement("img");
     const deleteBankCardButton = document.createElement("button");
+    const cardTypeImage = this.selectCardTypeImage(this.cardType);
 
-    domBankCard.classList.add('bank-card')
-    domBankCardNumberContainer.classList.add('bank-card__number')
+    domBankCard.classList.add("bank-card");
+    domBankCardNumberContainer.classList.add("bank-card__number");
 
     for (let i = 0; i < DEFAULT_VALUES.NUMBER_OF_INPUT_BLOCKS; i++) {
       const domBankCardNumber = document.createElement("p");
@@ -31,19 +32,21 @@ export default class BankCard {
       );
       domBankCardNumberContainer.appendChild(domBankCardNumber);
     }
-    const cardTypeImage = this.selectCardTypeImage(this.cardType);
-    domBankCardComment.innerHTML = this.cardComment || "no comments";
-    domBankCardComment.setAttribute("title", this.cardComment);
-    domBankCardComment.classList.add('bank-card__comment');
-    domBankCardTypeImage.setAttribute("src", cardTypeImage);
 
-    domBankCardTypeImage.classList.add('bank-card__image');
-    deleteBankCardButton.classList.add('bank-card__button');
+    domBankCardComment.innerHTML = this.cardComment || "no comments";
+    domBankCardComment.classList.add("bank-card__comment");
+    domBankCardComment.setAttribute("title", this.cardComment);
+
+    domBankCardTypeImage.setAttribute("src", cardTypeImage);
+    domBankCardTypeImage.classList.add("bank-card__image");
+
+    deleteBankCardButton.classList.add("button", "button_danger");
     deleteBankCardButton.innerHTML = "delete card";
 
     deleteBankCardButton.addEventListener("click", () => {
-      this.deleteBankCard(this.cardNumber, domBankCard);
+      this.createModalWindow(this.cardNumber, domBankCard);
     });
+
     domBankCard.appendChild(domBankCardNumberContainer);
     domBankCard.appendChild(domBankCardComment);
     domBankCard.appendChild(deleteBankCardButton);
@@ -53,17 +56,17 @@ export default class BankCard {
   }
 
   selectCardTypeImage(cardType) {
-  const cardImage = cardType === CARD_TYPE_VALUES.VISA.name
-      ? visaImage
-      : cardType === CARD_TYPE_VALUES.MASTERCARD.name
-      ? masterCardImage
-      : belcartImage;
+    const cardImage =
+      cardType === CARD_TYPE_VALUES.VISA.name
+        ? visaImage
+        : cardType === CARD_TYPE_VALUES.MASTERCARD.name
+        ? masterCardImage
+        : belcartImage;
 
-      return cardImage
+    return cardImage;
   }
 
-  deleteBankCard(cardNumber, domBankCard) {
-    deleteBankCardFromLocalStorage(cardNumber);
-    domBankCard.remove();
+  createModalWindow(cardNumber, domBankCard) {
+    new ModalWindow(cardNumber, domBankCard);
   }
 }

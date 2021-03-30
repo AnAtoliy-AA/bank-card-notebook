@@ -1,7 +1,8 @@
 .bank-card__form {
     background-color: #c0c0c0;
     height: 15vh;
-    max-width: 60vw;
+    width: 60vw;
+    max-width: 500px;
     border-radius: 1rem;
     margin: 1vh auto;
     padding: 1vh 1vw;
@@ -9,7 +10,7 @@
     flex-direction: column;
     justify-content: space-around;
 
-    .input-number__contaimer {
+    .input-number__container {
         display: flex;
         justify-content: space-between;
     }
@@ -22,6 +23,10 @@
 
     .input__comment {
         font-size: 2rem;
+    }
+
+    #form-message {
+        color: #ff0000;
     }
 
     @media screen and (max-width: 780px) {

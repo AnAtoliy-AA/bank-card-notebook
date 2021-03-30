@@ -1,5 +1,6 @@
 .bank-card {
-    max-width: 60vw;
+    width: 60vw;
+    max-width: 500px;
     background: linear-gradient(to right, rgb(34, 193, 195), rgb(253, 187, 45));
     margin: 5vh auto;
     padding: 5vh 5vw;
@@ -15,31 +16,14 @@
     }
 
     .bank-card__image {
-        max-width: 10%;
+        max-width: 20%;
         margin-left: 80%;
-        // max-height: 30%;
     }
 
     .bank-card__comment {
-        // max-width: 80%;
         overflow: hidden;
         font-size: 1.5rem;
         margin-bottom: 2vh;
-    }
-
-    .bank-card__button {
-        // margin: 1vh 1vw;
-        padding: 1vh 1vw;
-        font-size: 1.5rem;
-        border: 1px solid #000;
-        border-radius: 1rem;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-        cursor: pointer;
-    }
-
-    .bank-card__button:hover {
-        background-color: #ff0000;
-        color: #fff;
     }
 
     @media screen and (max-width: 00px) {
