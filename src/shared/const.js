@@ -23,3 +23,11 @@ export const CARD_TYPE_VALUES = {
         name: 'unknown card type',
     }
 }
+
+export const INPUT_NUMBERS = {
+    FIRST_CARD_NUMBER_INPUT: 0,
+    SECOND_CARD_NUMBER_INPUT: 1,
+    THIRD_CARD_NUMBER_INPUT: 2,
+    FOURTH_CARD_NUMBER_INPUT: 3,
+    COMMENT_INPUT: 4,
+}

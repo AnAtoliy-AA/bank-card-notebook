@@ -7,6 +7,7 @@
     border: 1px solid #000;
     border-radius: 2rem;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
     
 
     .bank-card__number {
@@ -35,4 +36,9 @@
             font-size: 1rem;
         }
     }
+}
+
+.bank-card:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
 }

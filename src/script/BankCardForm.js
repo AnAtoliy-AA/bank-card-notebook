@@ -1,6 +1,10 @@
 import BankCard from "./BankCard";
 import "../styles/bank-card-form.scss";
-import { DEFAULT_VALUES, CARD_TYPE_VALUES } from "../shared/const";
+import {
+  DEFAULT_VALUES,
+  CARD_TYPE_VALUES,
+  INPUT_NUMBERS,
+} from "../shared/const";
 import {
   addBankCardToLocalStorage,
   checkIsBankCardExistInLocalStorage,
@@ -9,6 +13,7 @@ import {
 export default class BankCardForm {
   constructor() {
     this.createBankCardForm();
+    this.domBankCardForm = this.createBankCardForm();
   }
 
   createBankCardForm() {
@@ -70,7 +75,11 @@ export default class BankCardForm {
   handleBankCardFormSubmit(event) {
     event.preventDefault();
     const domSubmitMessage = document.getElementById("form-message");
-    const cardNumberInInput = `${event.target[0].value}${event.target[1].value}${event.target[2].value}${event.target[3].value}`;
+    const cardNumberInInput = `${
+      event.target[INPUT_NUMBERS.FIRST_CARD_NUMBER_INPUT].value
+    }${event.target[INPUT_NUMBERS.SECOND_CARD_NUMBER_INPUT].value}${
+      event.target[INPUT_NUMBERS.THIRD_CARD_NUMBER_INPUT].value
+    }${event.target[INPUT_NUMBERS.FOURTH_CARD_NUMBER_INPUT].value}`;
 
     if (
       cardNumberInInput.length ===
@@ -86,7 +95,7 @@ export default class BankCardForm {
         );
         const bankCard = new BankCard(
           cardNumberInInput,
-          event.target[4].value,
+          event.target[INPUT_NUMBERS.COMMENT_INPUT].value,
           bankCardType
         );
         addBankCardToLocalStorage(bankCard);
@@ -94,6 +103,8 @@ export default class BankCardForm {
           ".bank-card-container"
         );
         bankCardContainer.appendChild(bankCard.createDomBankCard());
+        domSubmitMessage.innerHTML = "";
+        this.domBankCardForm.reset();
       } else
         domSubmitMessage.innerHTML = `Card with this number: ${cardNumberInInput} exist or not valid number`;
     } else

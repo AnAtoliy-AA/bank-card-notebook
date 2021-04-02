@@ -28,7 +28,7 @@ export default class BankCardNoteBook {
   createBankCardForm() {
     const bankCardForm = new BankCardForm();
 
-    this.mainRoot.appendChild(bankCardForm.createBankCardForm());
+    this.mainRoot.appendChild(bankCardForm.domBankCardForm);
   }
 
   createDomBankCardsFromLocalStorage() {
