@@ -12,8 +12,8 @@ body {
 
 #root {
     margin: 0 auto;
-    max-width: 1200px;
-    height: 100vh;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgb(230, 218, 218), rgb(39, 64, 70));
 }
 
 .button {

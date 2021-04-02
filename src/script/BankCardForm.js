@@ -4,6 +4,7 @@ import {
   DEFAULT_VALUES,
   CARD_TYPE_VALUES,
   INPUT_NUMBERS,
+  FIRST_NUMBER,
 } from "../shared/const";
 import {
   addBankCardToLocalStorage,
@@ -35,12 +36,10 @@ export default class BankCardForm {
 
     for (let i = 0; i < DEFAULT_VALUES.NUMBER_OF_INPUT_BLOCKS; i++) {
       const bankCardFormCardNumberInput = document.createElement("input");
-      // bankCardFormCardNumberInput.setAttribute("type", "number");
       bankCardFormCardNumberInput.setAttribute(
         "maxlength",
         DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_INPUT_BLOCK
       );
-
       bankCardFormCardNumberInput.setAttribute("placeholder", "Card№");
       bankCardFormCardNumberInput.classList.add("input__number");
       bankCardFormInputNumberContainer.appendChild(bankCardFormCardNumberInput);
@@ -61,15 +60,6 @@ export default class BankCardForm {
     bankCardForm.appendChild(submitMessage);
 
     return bankCardForm;
-  }
-
-  onCardNumberInputChange(value) {
-    const isCardValid = this.checkCardValidation(value);
-    const domSubmitMessage = document.getElementById("form-message");
-
-    domSubmitMessage.innerHTML = isCardValid
-      ? "Valid number"
-      : "not valid number";
   }
 
   handleBankCardFormSubmit(event) {
@@ -135,7 +125,7 @@ export default class BankCardForm {
   }
 
   selectCardTypeFromCardNumber(cardNumber) {
-    switch (cardNumber[0]) {
+    switch (cardNumber[FIRST_NUMBER]) {
       case CARD_TYPE_VALUES.VISA.digit:
         return CARD_TYPE_VALUES.VISA.name;
       case CARD_TYPE_VALUES.MASTERCARD.digit:

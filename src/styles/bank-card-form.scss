@@ -2,9 +2,8 @@
     background-color: #c0c0c0;
     height: 25vh;
     width: 60vw;
-    max-width: 500px;
     border-radius: 1rem;
-    margin: 1vh auto;
+    margin: 0 auto;
     padding: 1vh 1vw;
     display: flex;
     flex-direction: column;
@@ -17,7 +16,7 @@
 
     .input__number {
         max-width: 20%;
-        font-size: 2rem;
+        font-size: 1.7rem;
         text-align: center;
     }
 
@@ -33,11 +32,18 @@
         .input__number {
             font-size: 1.5rem;
         }
+        .input__comment {
+            font-size: 1.5rem;
+        }
+        
     }
 
     @media screen and (max-width: 500px) {
         .input__number {
-            font-size: 1rem;
+            font-size: 0.8rem;
+        }
+        .input__comment {
+            font-size: 1.2rem;
         }
     }
 }

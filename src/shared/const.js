@@ -31,3 +31,5 @@ export const INPUT_NUMBERS = {
     FOURTH_CARD_NUMBER_INPUT: 3,
     COMMENT_INPUT: 4,
 }
+
+export const FIRST_NUMBER = 0;
