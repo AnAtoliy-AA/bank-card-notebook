@@ -25,6 +25,8 @@
         overflow: hidden;
         font-size: 1.5rem;
         margin-bottom: 2vh;
+        white-space: nowrap;
+        text-overflow: ellipsis;
     }
 
     @media screen and (max-width: 500px) {
