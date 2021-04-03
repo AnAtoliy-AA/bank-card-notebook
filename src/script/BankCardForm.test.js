@@ -10,43 +10,64 @@ it("Shows that form  has checkCardValidation: ", () => {
   expect(bankCardForm.checkCardValidation).toBeDefined();
 });
 
+const validVisaCardNumbersArray = [
+  "4242424242424242",
+  "4111111111111111",
+  "4716059713971128",
+  "4539469134658342",
+  "4012888888881881",
+  "4000000000000002",
+];
+
 it("Shows that form checkCardValidation working with VISA valid cards: ", () => {
   const bankCardForm = new BankCardForm();
   expect(bankCardForm.checkCardValidation).toBeDefined();
-  expect(bankCardForm.checkCardValidation('4242424242424242')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('4111111111111111')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('4716059713971128')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('4539469134658342')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('4012888888881881')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('4000000000000002')).toBeTruthy();
+
+  for (let value of validVisaCardNumbersArray) {
+    expect(bankCardForm.checkCardValidation(value)).toBeTruthy();
+  }
 });
+
+const validMasterCardNumbersArray = [
+  "5554842174171979",
+  "5500000000000004",
+  "5238236929549825",
+  "5339080833183281",
+  "5555555555554444",
+  "5105105105105100",
+];
 
 it("Shows that form checkCardValidation working with MasterCard valid cards: ", () => {
   const bankCardForm = new BankCardForm();
   expect(bankCardForm.checkCardValidation).toBeDefined();
-  expect(bankCardForm.checkCardValidation('5554842174171979')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('5500000000000004')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('5238236929549825')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('5339080833183281')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('5555555555554444')).toBeTruthy();
-  expect(bankCardForm.checkCardValidation('5105105105105100')).toBeTruthy();
+
+  for (let value of validMasterCardNumbersArray) {
+    expect(bankCardForm.checkCardValidation(value)).toBeTruthy();
+  }
 });
+
+const invalidCardsNumbersArray = [
+  "4242424242424243",
+  "4222222222222222",
+  "5100000000000512",
+  "4111111111111112",
+  "4716059713971126",
+  "4539469134658343",
+  "4012888888881885",
+  "4000000000000000",
+  "5554842174171982",
+  "5500000000000000",
+  "5238236929549828",
+  "5339080833183289",
+  "5555555555554442",
+  "5105105105105103",
+];
 
 it("Shows that form checkCardValidation not working with invalid cards: ", () => {
   const bankCardForm = new BankCardForm();
   expect(bankCardForm.checkCardValidation).toBeDefined();
-  expect(bankCardForm.checkCardValidation('4242424242424243')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('4222222222222222')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5100000000000512')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('4111111111111112')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('4716059713971126')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('4539469134658343')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('4012888888881885')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('4000000000000000')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5554842174171982')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5500000000000000')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5238236929549828')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5339080833183289')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5555555555554442')).toBeFalsy();
-  expect(bankCardForm.checkCardValidation('5105105105105103')).toBeFalsy();
+
+  for (let value of invalidCardsNumbersArray) {
+    expect(bankCardForm.checkCardValidation(value)).toBeFalsy();
+  }
 });

@@ -1,14 +1,17 @@
-import { CARD_TYPE_VALUES, DEFAULT_VALUES } from "../shared/const";
+import {
+  CARD_TYPE_VALUES,
+  DEFAULT_VALUES,
+  FIRST_NUMBER,
+} from "../shared/const";
 import ModalWindow from "./ModalWindow";
 import belcartImage from "../images/logo_belcart.png";
 import masterCardImage from "../images/logo-mastercard.png";
 import visaImage from "../images/logo-visa.png";
 import "../styles/bank-card.scss";
 export default class BankCard {
-  constructor(cardNumber, cardComment, cardType) {
+  constructor(cardNumber, cardComment) {
     this.cardNumber = cardNumber;
     this.cardComment = cardComment;
-    this.cardType = cardType;
   }
 
   createDomBankCard() {
@@ -17,7 +20,7 @@ export default class BankCard {
     const domBankCardComment = document.createElement("p");
     const domBankCardTypeImage = document.createElement("img");
     const deleteBankCardButton = document.createElement("button");
-    const cardTypeImage = this.selectCardTypeImage(this.cardType);
+    const cardTypeImage = this.selectCardTypeFromCardNumber(this.cardNumber);
 
     domBankCard.classList.add("bank-card");
     domBankCardNumberContainer.classList.add("bank-card__number");
@@ -38,6 +41,7 @@ export default class BankCard {
     domBankCardComment.setAttribute("title", this.cardComment);
 
     domBankCardTypeImage.setAttribute("src", cardTypeImage);
+    domBankCardTypeImage.setAttribute("alt", cardTypeImage);
     domBankCardTypeImage.classList.add("bank-card__image");
 
     deleteBankCardButton.classList.add("button", "button_danger");
@@ -55,15 +59,17 @@ export default class BankCard {
     return domBankCard;
   }
 
-  selectCardTypeImage(cardType) {
-    const cardImage =
-      cardType === CARD_TYPE_VALUES.VISA.name
-        ? visaImage
-        : cardType === CARD_TYPE_VALUES.MASTERCARD.name
-        ? masterCardImage
-        : belcartImage;
-
-    return cardImage;
+  selectCardTypeFromCardNumber(cardNumber) {
+    switch (cardNumber[FIRST_NUMBER]) {
+      case CARD_TYPE_VALUES.VISA.digit:
+        return visaImage;
+      case CARD_TYPE_VALUES.MASTERCARD.digit:
+        return masterCardImage;
+      case CARD_TYPE_VALUES.BELCART.digit:
+        return belcartImage;
+      default:
+        return CARD_TYPE_VALUES.DEFAULT.name;
+    }
   }
 
   createModalWindow(cardNumber, domBankCard) {

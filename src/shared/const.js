@@ -4,6 +4,12 @@ export const DEFAULT_VALUES = {
     NUMBER_OF_INPUT_BLOCKS: 4,
     NUMBER_OF_DIGITS_IN_INPUT_BLOCK: 4,
     NUMBER_OF_DIGITS_IN_CARD_NUMBER: 16,
+    EMPTY: '',
+    FORM_COMMENTS_PLACEHOLDER: 'Write your comment here...',
+    FORM_CARD_NUMBER_PLACEHOLDER: 'Card№',
+    FORM_MESSAGE_NUMBERS_COUNT: 'please enter 16 digits. You entered: ',
+    FORM_MESSAGE_INVALID_CARD_BEFORE: 'Card with number: ',
+    FORM_MESSAGE_INVALID_CARD_AFTER: ' is not valid',
 }
 
 export const CARD_TYPE_VALUES = {

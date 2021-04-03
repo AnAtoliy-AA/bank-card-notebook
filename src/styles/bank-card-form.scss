@@ -26,6 +26,7 @@
 
     #form-message {
         color: #ff0000;
+        font-size: 1.5rem;
     }
 
     @media screen and (max-width: 780px) {
@@ -34,6 +35,9 @@
         }
         .input__comment {
             font-size: 1.5rem;
+        }
+        #form-message {
+            font-size: 1rem;
         }
         
     }

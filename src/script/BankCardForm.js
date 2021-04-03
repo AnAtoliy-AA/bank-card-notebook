@@ -1,20 +1,12 @@
-import BankCard from "./BankCard";
 import "../styles/bank-card-form.scss";
-import {
-  DEFAULT_VALUES,
-  CARD_TYPE_VALUES,
-  INPUT_NUMBERS,
-  FIRST_NUMBER,
-} from "../shared/const";
-import {
-  addBankCardToLocalStorage,
-  checkIsBankCardExistInLocalStorage,
-} from "../utilities/utilities";
+import { DEFAULT_VALUES, INPUT_NUMBERS } from "../shared/const";
+import { addBankCardToLocalStorage } from "../utilities/utilities";
 
 export default class BankCardForm {
-  constructor() {
+  constructor(createDomBankCardsFromLocalStorage) {
     this.createBankCardForm();
     this.domBankCardForm = this.createBankCardForm();
+    this.createDomBankCardsFromLocalStorage = createDomBankCardsFromLocalStorage;
   }
 
   createBankCardForm() {
@@ -30,7 +22,7 @@ export default class BankCardForm {
     bankCardFormButtonCardCommentInput.setAttribute("maxlength", 1024);
     bankCardFormButtonCardCommentInput.setAttribute(
       "placeholder",
-      "Write your comment here..."
+      DEFAULT_VALUES.FORM_COMMENTS_PLACEHOLDER
     );
     bankCardFormButton.classList.add("button", "button_save");
 
@@ -40,7 +32,10 @@ export default class BankCardForm {
         "maxlength",
         DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_INPUT_BLOCK
       );
-      bankCardFormCardNumberInput.setAttribute("placeholder", "Card№");
+      bankCardFormCardNumberInput.setAttribute(
+        "placeholder",
+        DEFAULT_VALUES.FORM_CARD_NUMBER_PLACEHOLDER
+      );
       bankCardFormCardNumberInput.classList.add("input__number");
       bankCardFormInputNumberContainer.appendChild(bankCardFormCardNumberInput);
     }
@@ -76,31 +71,19 @@ export default class BankCardForm {
       DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_CARD_NUMBER
     ) {
       const isCardValid = this.checkCardValidation(cardNumberInInput);
-      const isCardExistInLocalStorage = checkIsBankCardExistInLocalStorage(
-        cardNumberInInput
-      );
 
-      if (isCardValid && !isCardExistInLocalStorage) {
-        const bankCardType = this.selectCardTypeFromCardNumber(
-          cardNumberInInput
-        );
-        const bankCard = new BankCard(
+      if (isCardValid) {
+        addBankCardToLocalStorage(
           cardNumberInInput,
-          event.target[INPUT_NUMBERS.COMMENT_INPUT].value,
-          bankCardType
+          event.target[INPUT_NUMBERS.COMMENT_INPUT].value
         );
-        const bankCardContainer = document.querySelector(
-          ".bank-card-container"
-        );
-
-        addBankCardToLocalStorage(bankCard);
-        bankCardContainer.appendChild(bankCard.createDomBankCard());
-        domSubmitMessage.innerHTML = "";
+        this.createDomBankCardsFromLocalStorage();
+        domSubmitMessage.innerHTML = DEFAULT_VALUES.EMPTY;
         this.domBankCardForm.reset();
       } else
-        domSubmitMessage.innerHTML = `Card with this number: ${cardNumberInInput} exist or not valid number`;
+        domSubmitMessage.innerHTML = `${DEFAULT_VALUES.FORM_MESSAGE_INVALID_CARD_BEFORE}${cardNumberInInput}${DEFAULT_VALUES.FORM_MESSAGE_INVALID_CARD_AFTER}`;
     } else
-      domSubmitMessage.innerHTML = `please enter 16 digits. You entered: ${cardNumberInInput.length}`;
+      domSubmitMessage.innerHTML = `${DEFAULT_VALUES.FORM_MESSAGE_NUMBERS_COUNT}${cardNumberInInput.length}`;
   }
 
   checkCardValidation(cardNumber) {
@@ -120,18 +103,5 @@ export default class BankCardForm {
         10 ===
       0
     );
-  }
-
-  selectCardTypeFromCardNumber(cardNumber) {
-    switch (cardNumber[FIRST_NUMBER]) {
-      case CARD_TYPE_VALUES.VISA.digit:
-        return CARD_TYPE_VALUES.VISA.name;
-      case CARD_TYPE_VALUES.MASTERCARD.digit:
-        return CARD_TYPE_VALUES.MASTERCARD.name;
-      case CARD_TYPE_VALUES.BELCART.digit:
-        return CARD_TYPE_VALUES.BELCART.name;
-      default:
-        return CARD_TYPE_VALUES.DEFAULT.name;
-    }
   }
 }

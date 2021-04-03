@@ -1,14 +1,13 @@
 import BankCardForm from "./BankCardForm";
-import { BANK_CARDS_IN_LOCAL_STORAGE } from "../shared/const";
+import { BANK_CARDS_IN_LOCAL_STORAGE, DEFAULT_VALUES } from "../shared/const";
 import BankCard from "./BankCard";
-import '../styles/bank-card-notebook.scss';
+import "../styles/bank-card-notebook.scss";
 
 const ELEMENT_NAMES = {
   MAIN_ROOT_ID: "root",
   BANK_CARD_CONTAINER_CLASS: "bank-card-container",
   HTML_VIEWER_CONTAINER_ID: "htmlViewerContainerId",
   CREATE_DIV: "div",
-  CREATE_BUTTON: "button",
 };
 export default class BankCardNoteBook {
   constructor() {
@@ -26,7 +25,9 @@ export default class BankCardNoteBook {
   }
 
   createBankCardForm() {
-    const bankCardForm = new BankCardForm();
+    const bankCardForm = new BankCardForm(
+      this.createDomBankCardsFromLocalStorage
+    );
 
     this.mainRoot.appendChild(bankCardForm.domBankCardForm);
   }
@@ -37,13 +38,12 @@ export default class BankCardNoteBook {
     );
     const bankCardContainer = document.querySelector(".bank-card-container");
 
-    bankCardsInLocalStorage.map((card) => {
-      const domCard = new BankCard(
-        card.cardNumber,
-        card.cardComment,
-        card.cardType
-      );
+    bankCardContainer.innerHTML = DEFAULT_VALUES.EMPTY;
+
+    for (let key in bankCardsInLocalStorage) {
+      const domCard = new BankCard(key, bankCardsInLocalStorage[key]);
       bankCardContainer.appendChild(domCard.createDomBankCard());
-    });
+    }
   }
 }
+
