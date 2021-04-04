@@ -6,12 +6,16 @@ import "../styles/bank-card-notebook.scss";
 const ELEMENT_NAMES = {
   MAIN_ROOT_ID: "root",
   BANK_CARD_CONTAINER_CLASS: "bank-card-container",
-  HTML_VIEWER_CONTAINER_ID: "htmlViewerContainerId",
   CREATE_DIV: "div",
+  CREATE_H1: "h1",
+  HEADER_TEXT: "Bank Card Notebook",
+  HEADER_CLASS: "notebook-header"
 };
 export default class BankCardNoteBook {
-  constructor() {
+  constructor(bankCardsArray) {
     this.mainRoot = document.getElementById(ELEMENT_NAMES.MAIN_ROOT_ID);
+    this.bankCardsArray = bankCardsArray;
+    this.createDomHeader();
     this.createBankCardForm();
     this.createBankCardsContainer();
     this.createDomBankCardsFromLocalStorage();
@@ -24,6 +28,15 @@ export default class BankCardNoteBook {
     this.mainRoot.appendChild(bankCardsContainer);
   }
 
+  createDomHeader() {
+    const domHeader = document.createElement(ELEMENT_NAMES.CREATE_H1);
+
+    domHeader.classList.add(ELEMENT_NAMES.HEADER_CLASS);
+    domHeader.innerHTML = ELEMENT_NAMES.HEADER_TEXT;
+
+    this.mainRoot.appendChild(domHeader);
+  }
+
   createBankCardForm() {
     const bankCardForm = new BankCardForm(
       this.createDomBankCardsFromLocalStorage
@@ -33,16 +46,13 @@ export default class BankCardNoteBook {
   }
 
   createDomBankCardsFromLocalStorage() {
-    const bankCardsInLocalStorage = JSON.parse(
-      localStorage.getItem(BANK_CARDS_IN_LOCAL_STORAGE)
-    );
-    const bankCardContainer = document.querySelector(".bank-card-container");
+    const domBankCardContainer = document.querySelector(".bank-card-container");
 
-    bankCardContainer.innerHTML = DEFAULT_VALUES.EMPTY;
+    domBankCardContainer.innerHTML = DEFAULT_VALUES.EMPTY;
 
-    for (let key in bankCardsInLocalStorage) {
-      const domCard = new BankCard(key, bankCardsInLocalStorage[key]);
-      bankCardContainer.appendChild(domCard.createDomBankCard());
+    for (let key in this.bankCardsArray) {
+      const domCard = new BankCard(key, this.bankCardsArray[key]);
+      domBankCardContainer.appendChild(domCard.createDomBankCard());
     }
   }
 }
