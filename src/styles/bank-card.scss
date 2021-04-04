@@ -1,6 +1,5 @@
 .bank-card {
-    width: 60vw;
-    max-width: 950px;
+    max-width: 500px;
     background: linear-gradient(to right, rgb(34, 193, 195), rgb(253, 187, 45));
     margin: 5vh auto;
     padding: 5vh 5vw;
@@ -13,7 +12,7 @@
     .bank-card__number {
         display: flex;
         justify-content: space-between;
-        font-size: 3.5rem;
+        font-size: 2rem;
     }
 
     .bank-card__image {
@@ -23,10 +22,39 @@
 
     .bank-card__comment {
         overflow: hidden;
-        font-size: 1.5rem;
+        font-size: 1rem;
         margin-bottom: 2vh;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+}
+@media screen and (max-width: 1921px) {
+    .bank-card {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 1281px) {
+    .bank-card {
+        max-width: 450px;
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    .bank-card {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .bank-card {
+        max-width: 320px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .bank-card {
+        max-width: 250px;
     }
 }
 

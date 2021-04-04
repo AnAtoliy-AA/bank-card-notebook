@@ -46,13 +46,16 @@ export default class BankCardNoteBook {
   }
 
   createDomBankCardsFromLocalStorage() {
-    const domBankCardContainer = document.querySelector(".bank-card-container");
+    const bankCardsInLocalStorage = JSON.parse(
+      localStorage.getItem(BANK_CARDS_IN_LOCAL_STORAGE)
+    );
+    const bankCardContainer = document.querySelector(".bank-card-container");
 
-    domBankCardContainer.innerHTML = DEFAULT_VALUES.EMPTY;
+    bankCardContainer.innerHTML = DEFAULT_VALUES.EMPTY;
 
-    for (let key in this.bankCardsArray) {
-      const domCard = new BankCard(key, this.bankCardsArray[key]);
-      domBankCardContainer.appendChild(domCard.createDomBankCard());
+    for (let key in bankCardsInLocalStorage) {
+      const domCard = new BankCard(key, bankCardsInLocalStorage[key]);
+      bankCardContainer.appendChild(domCard.createDomBankCard());
     }
   }
 }
