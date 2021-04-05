@@ -28,7 +28,7 @@ export default class BankCard {
     for (let i = 0; i < DEFAULT_VALUES.NUMBER_OF_INPUT_BLOCKS; i++) {
       const domBankCardNumber = document.createElement("p");
 
-      domBankCardNumber.innerHTML = this.cardNumber.substring(
+      domBankCardNumber.innerText = this.cardNumber.substring(
         i * DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_INPUT_BLOCK,
         i * DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_INPUT_BLOCK +
           DEFAULT_VALUES.NUMBER_OF_DIGITS_IN_INPUT_BLOCK
@@ -36,7 +36,7 @@ export default class BankCard {
       domBankCardNumberContainer.appendChild(domBankCardNumber);
     }
 
-    domBankCardComment.innerHTML = this.cardComment || "no comments";
+    domBankCardComment.innerText = this.cardComment || "no comments";
     domBankCardComment.classList.add("bank-card__comment");
     domBankCardComment.setAttribute("title", this.cardComment);
 
@@ -45,7 +45,7 @@ export default class BankCard {
     domBankCardTypeImage.classList.add("bank-card__image");
 
     deleteBankCardButton.classList.add("button", "button_danger");
-    deleteBankCardButton.innerHTML = "delete card";
+    deleteBankCardButton.innerText = "delete card";
 
     deleteBankCardButton.addEventListener("click", () => {
       this.createModalWindow(this.cardNumber, domBankCard);

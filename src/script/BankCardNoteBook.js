@@ -32,7 +32,7 @@ export default class BankCardNoteBook {
     const domHeader = document.createElement(ELEMENT_NAMES.CREATE_H1);
 
     domHeader.classList.add(ELEMENT_NAMES.HEADER_CLASS);
-    domHeader.innerHTML = ELEMENT_NAMES.HEADER_TEXT;
+    domHeader.innerText = ELEMENT_NAMES.HEADER_TEXT;
 
     this.mainRoot.appendChild(domHeader);
   }
@@ -51,7 +51,7 @@ export default class BankCardNoteBook {
     );
     const bankCardContainer = document.querySelector(".bank-card-container");
 
-    bankCardContainer.innerHTML = DEFAULT_VALUES.EMPTY;
+    bankCardContainer.innerText = DEFAULT_VALUES.EMPTY;
 
     for (let key in bankCardsInLocalStorage) {
       const domCard = new BankCard(key, bankCardsInLocalStorage[key]);

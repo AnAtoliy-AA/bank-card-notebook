@@ -43,7 +43,7 @@ export default class BankCardForm {
     const submitMessage = document.createElement("p");
     submitMessage.setAttribute("id", "form-message");
 
-    bankCardFormButton.innerHTML = "submit";
+    bankCardFormButton.innerText = "submit";
 
     bankCardForm.addEventListener("submit", (event) =>
       this.handleBankCardFormSubmit(event)
@@ -78,12 +78,12 @@ export default class BankCardForm {
           event.target[INPUT_NUMBERS.COMMENT_INPUT].value
         );
         this.createDomBankCardsFromLocalStorage();
-        domSubmitMessage.innerHTML = DEFAULT_VALUES.EMPTY;
+        domSubmitMessage.innerText = DEFAULT_VALUES.EMPTY;
         this.domBankCardForm.reset();
       } else
-        domSubmitMessage.innerHTML = `${DEFAULT_VALUES.FORM_MESSAGE_INVALID_CARD_BEFORE}${cardNumberInInput}${DEFAULT_VALUES.FORM_MESSAGE_INVALID_CARD_AFTER}`;
+        domSubmitMessage.innerText = `${DEFAULT_VALUES.FORM_MESSAGE_INVALID_CARD_BEFORE}${cardNumberInInput}${DEFAULT_VALUES.FORM_MESSAGE_INVALID_CARD_AFTER}`;
     } else
-      domSubmitMessage.innerHTML = `${DEFAULT_VALUES.FORM_MESSAGE_NUMBERS_COUNT}${cardNumberInInput.length}`;
+      domSubmitMessage.innerText = `${DEFAULT_VALUES.FORM_MESSAGE_NUMBERS_COUNT}${cardNumberInInput.length}`;
   }
 
   checkCardValidation(cardNumber) {

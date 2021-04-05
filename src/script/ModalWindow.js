@@ -15,9 +15,9 @@ export default class ModalWindow {
     modalWindow.classList.add("modal-window");
     modalControlsContainer.classList.add("controls-container");
 
-    agreeDeleteButton.innerHTML = "agree";
-    cancelDeleteButton.innerHTML = "cancel";
-    modalWindow.innerHTML = `Are you sure you want to delete ${cardNumber}?`;
+    agreeDeleteButton.innerText = "agree";
+    cancelDeleteButton.innerText = "cancel";
+    modalWindow.innerText = `Are you sure you want to delete ${cardNumber}?`;
 
     agreeDeleteButton.classList.add("button", "button_danger");
     cancelDeleteButton.classList.add("button", "button_save");
