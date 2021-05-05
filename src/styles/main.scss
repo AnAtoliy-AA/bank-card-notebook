@@ -1,0 +1,55 @@
+*,
+::after,
+::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    margin: 0;
+}
+
+#root {
+    margin: 0 auto;
+    padding-top: 1vh;
+    min-height: 100vh;
+    background: linear-gradient(to right, rgb(230, 218, 218), rgb(39, 64, 70));
+    font-family: sans-serif;
+}
+
+.button {
+    padding: 1vh 1vw;
+    font-size: 1.5rem;
+    border: 1px solid #000;
+    border-radius: 1rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+}
+
+.button_danger:hover {
+    background-color: #ff0000;
+    color: #fff;
+}
+
+.button_save:hover {
+    background-color: #00ff00;
+}
+
+@media screen and (max-width: 1025px) {
+    html {
+        font-size: 80%;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    html {
+        font-size: 60%;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    html {
+        font-size: 30%;
+    }
+}

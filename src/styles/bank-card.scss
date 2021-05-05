@@ -1,0 +1,64 @@
+.bank-card {
+    max-width: 500px;
+    background: linear-gradient(to right, rgb(34, 193, 195), rgb(253, 187, 45));
+    margin: 5vh auto;
+    padding: 5vh 5vw;
+    border: 1px solid #000;
+    border-radius: 2rem;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s;
+
+
+    .bank-card__number {
+        display: flex;
+        justify-content: space-between;
+        font-size: 2rem;
+    }
+
+    .bank-card__image {
+        max-width: 20%;
+        margin-left: 80%;
+    }
+
+    .bank-card__comment {
+        overflow: hidden;
+        font-size: 1rem;
+        margin-bottom: 2vh;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+@media screen and (max-width: 1921px) {
+    .bank-card {
+        max-width: 500px;
+    }
+}
+
+@media screen and (max-width: 1281px) {
+    .bank-card {
+        max-width: 450px;
+    }
+}
+
+@media screen and (max-width: 1025px) {
+    .bank-card {
+        max-width: 400px;
+    }
+}
+
+@media screen and (max-width: 769px) {
+    .bank-card {
+        max-width: 320px;
+    }
+}
+
+@media screen and (max-width: 376px) {
+    .bank-card {
+        max-width: 250px;
+    }
+}
+
+.bank-card:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8);
+}

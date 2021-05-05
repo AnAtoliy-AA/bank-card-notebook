@@ -1,0 +1,32 @@
+.bank-card__form {
+    background-color: #c0c0c0;
+    height: 25vh;
+    width: 60vw;
+    max-width: 700px;
+    border-radius: 1rem;
+    margin: 0 auto;
+    padding: 1vh 1vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .input-number__container {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .input__number {
+        max-width: 20%;
+        font-size: 2rem;
+        text-align: center;
+    }
+
+    .input__comment {
+        font-size: 2rem;
+    }
+
+    #form-message {
+        color: #ff0000;
+        font-size: 1.5rem;
+    }
+}

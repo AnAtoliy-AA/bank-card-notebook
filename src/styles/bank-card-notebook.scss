@@ -1,0 +1,28 @@
+.notebook-header {
+    font-size: 3rem;
+    margin: 2vh auto;
+    text-align: center;
+    color: #2c2c2c;
+    background-color: #d5d5d5;
+    width: 40vw;
+    border-radius: 1rem;
+    letter-spacing: .05em;
+    text-shadow:
+        4px 4px 0px #d5d5d5,
+        7px 7px 0px rgba(0, 0, 0, 0.2);
+    animation: header-opacity 5s infinite;
+
+    @keyframes header-opacity {
+        50% {
+            opacity: 0.2;
+        }
+    }
+}
+
+.bank-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 90%;
+    margin: 0 auto;
+}
